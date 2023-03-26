@@ -1,26 +1,28 @@
 import streamlit as st
+from PIL import Image
 
-st.title('How do Alcohol consumption and Blood Pressure vary by country?')
-st.subheader('[GitHub Repo](https://github.com/charlieblindsay/global-blood-pressure-data)')
+st.title('Want to see my code? Click below:')
+st.subheader('[GitHub Repo](https://github.com/charlieblindsay/World-Health-Data)')
 
-st.subheader('Purpose of this app')
-st.write('The purpose is to...')
-st.write('I originally used this WHO data as part of the \'Data Visuzalization\' section of a [Python course](https://icsm-python-course.netlify.app/).')
+st.subheader('Purpose of the app')
+st.write('It allows users to interactively explore data from the World Health Organisation')
+
+st.subheader('Purpose of different pages')
+st.write('1. Time Variation: For the countries selected, the selected dependent variable is plotted against time')
+st.write('2. Relationship between Variables: For the year selected, the 2 selected dependent variables are plotted against each other')
+st.write('3. Global Variation: A chloropleth shows how alcohol consumption varied across the globe in the year 2000')
+
+st.subheader('What does BMI mean?')
+st.write('Body Mass Index (BMI) gives an indication of whether a person\'s weight is healthy. It is a person\'s weight (in kilograms) divided by their height (in metres) squared.')
+img = Image.open('images/bmi.png')
+st.image(img)
+
+st.subheader('What are healthy levels of alcohol consumption?')
+st.write('According to the [NHS](https://www.nhs.uk/live-well/alcohol-advice/calculating-alcohol-units/), the maximum amount people should drink is 14 units per week, which equates to around 8 litres of pure alcohol per year.')
 
 st.subheader('Data Sources')
 st.write('Both datasets are from the WHO website:')
-st.write("- [Link to Alcohol data](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/alcohol-recorded-per-capita-(15-)-consumption-(in-litres-of-pure-alcohol))")
-st.write("- [Link to Alcohol data](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/alcohol-recorded-per-capita-(15-)-consumption-(in-litres-of-pure-alcohol))")
+st.write("- [BMI data](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/mean-bmi-(kg-m-)-(age-standardized-estimate))")
+st.write("- [Alcohol data](https://www.who.int/data/gho/data/indicators/indicator-details/GHO/alcohol-recorded-per-capita-(15-)-consumption-(in-litres-of-pure-alcohol))")
 
-st.subheader('What does the blood pressure data show?')
-st.write('Blood pressure measures the force of your blood pushing against the walls of your blood vessels.')
-st.write('If your blood pressure is high, it means your heart is working too hard and the force of the blood flowing through your vessels is too high. This increased pressure can cause your arteries to thicken or harden, and for your blood vessels to weaken, which can lead to serious health conditions.')
-st.write('https://www.healthpartners.com/blog/which-numbers-mean-high-blood-pressure/')
-
-st.subheader('What does the alcohol consumption data show?')
-st.write('The alcohol data is from the WHO website')
-
-st.subheader('Purpose of different pages:')
-st.write('1. Chloropleth: A coloured map where different colours correspond to different levels of alcohol consumption or blood pressure.')
-st.write('2. Time Variation (Country Selection): Select the countries of interest for Time Variation (Plots) page - see below')
-st.write('3. Time Variation (Plots): For the countries selected, alcohol consumption against time and blood pressure against time are plotted')
+st.write('I originally used this data as part of a \'Data Visuzalization\' section in a [Python course](https://icsm-python-course.netlify.app/) I created.')

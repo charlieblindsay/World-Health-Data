@@ -1,6 +1,7 @@
 import pandas as pd
+from utilities.file_paths import raw_data_path, processed_data_path
 
-df = pd.read_csv('data/raw/blood_pressure_data.csv')
+df = pd.read_csv(raw_data_path / 'BMI_data.csv')
 
 def get_column_name(column):
     if column.name == 'Unnamed: 0':
@@ -58,4 +59,4 @@ df = df.sort_values(by='Year', ascending=True)
 
 df.set_index('Year')
 
-df.to_csv('data/processed/blood_pressure_data.csv', index=False)
+df.to_csv(processed_data_path / 'BMI_data.csv', index=False)

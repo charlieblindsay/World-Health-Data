@@ -1,6 +1,8 @@
 import pandas as pd
+from utilities.data_cleaning import change_dataframe_structure
+from utilities.file_paths import raw_data_path, processed_data_path
 
-df=pd.read_csv('data/raw/alcohol_data.csv')
+df=pd.read_csv(raw_data_path / 'alcohol_data.csv')
 
 # Selecting columns of interest
 df = df[['Period', 'Location', 'Dim1', 'SpatialDimValueCode', 'Value']]
@@ -38,24 +40,7 @@ df.Alcohol_consumption_per_capita = df.Alcohol_consumption_per_capita.apply(conv
 
 df = df.sort_values(by=['Country', 'Year'])
 
-countries = df.Country.unique()
-years = df.Year.unique()
-years.sort()
+df = change_dataframe_structure(df)
 
-dict = {country: [] for country in countries}
-for country in countries:
-    for year in years:
-        value = df[df.Country == country][df.Year == year].Alcohol_consumption_per_capita
-        if value.empty == True:
-            dict[country].append(float('NaN'))
-        else:
-            dict[country].append(float(df[df.Country == country][df.Year == year].Alcohol_consumption_per_capita))
-
-df = pd.DataFrame(dict)
-
-df['Year'] = [i for i in range(years[0], years[-1]+1)]
-
-df = df.set_index('Year')
-
-df.to_csv('data/processed/alcohol_data.csv', index=False)
-df_country_codes.to_csv('data/processed/processed/country_codes.csv', index=False)
+df.to_csv(processed_data_path / 'alcohol_data.csv', index=False)
+df_country_codes.to_csv(processed_data_path / 'country_codes.csv', index=False)
