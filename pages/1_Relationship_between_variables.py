@@ -1,8 +1,6 @@
 import streamlit as st
 import plotly.express as px
 import pandas as pd
-import matplotlib.pyplot as plt
-from PIL import Image
 from utilities.file_paths import raw_data_path, processed_data_path
 
 st.title('What is the relationship between BMI and alcohol consumption?')
@@ -38,7 +36,7 @@ df_continents.columns = ['Country_Code', 'sub-region', 'Continent']
 df_merge = pd.merge(df_merge, df_continents, how='left', on='Country_Code')
 
 if year == 2015:
-    st.subheader('Try to analyse the data! Click below to see if you got the same points as me')
+    st.subheader('Try to analyse the data! Click below to see if you got the same analysis points as me')
     with st.expander("See my analysis of the 2015 data"):
         st.write("""
             - There are 7 countries with an average BMI of 30 kg/m^2 or more; they are all from Micronesia or Polynesia, which are islands in Oceania! This makes the average person there obese.

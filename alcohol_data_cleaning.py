@@ -1,5 +1,5 @@
 import pandas as pd
-from utilities.data_cleaning import change_dataframe_structure
+from utilities.data_cleaning import change_dataframe_structure, check_if_consumption_is_zero, convert_consumption_values_to_floats
 from utilities.file_paths import raw_data_path, processed_data_path
 
 df=pd.read_csv(raw_data_path / 'alcohol_data.csv')
@@ -19,22 +19,7 @@ df = df[df.Alcohol_Type == 'All types']
 # Remving 'Alcohol_Type' column as it now contains no information
 df = df.drop('Alcohol_Type', axis=1)
 
-# Removing rows where alcohol consumption is zero
-def check_if_consumption_is_zero(consumption_value):
-    if consumption_value in [0.0, '0', '0 [0 – 0]', '0.000\xa01']:
-        return False
-    else:
-        return True
-    
 df = df[df.Alcohol_consumption_per_capita.apply(check_if_consumption_is_zero)]
-
-def convert_consumption_values_to_floats(consumption_value):
-    if isinstance(consumption_value, float):
-        return consumption_value
-    else:
-        if '\xa0' in consumption_value:
-            consumption_value = consumption_value.replace('\xa0', '')
-        return float(consumption_value.split(' ')[0])
     
 df.Alcohol_consumption_per_capita = df.Alcohol_consumption_per_capita.apply(convert_consumption_values_to_floats)
 
