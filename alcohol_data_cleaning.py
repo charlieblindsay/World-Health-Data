@@ -1,3 +1,5 @@
+# TODO: Finish Comments
+
 import pandas as pd
 from utilities.data_cleaning import change_dataframe_structure, check_if_consumption_is_zero, convert_consumption_values_to_floats
 from utilities.file_paths import raw_data_path, processed_data_path

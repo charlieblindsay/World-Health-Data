@@ -1,3 +1,5 @@
+# TODO: Write Comments
+
 import pandas as pd
 from utilities.data_cleaning import change_dataframe_structure, remove_range
 from utilities.file_paths import raw_data_path, processed_data_path

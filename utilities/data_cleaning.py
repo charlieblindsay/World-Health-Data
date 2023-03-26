@@ -1,3 +1,5 @@
+#TODO: Add docstrings to all functions
+
 import pandas as pd
 
 def change_dataframe_structure(df: pd.DataFrame) -> pd.DataFrame:
