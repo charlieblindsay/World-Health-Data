@@ -9,7 +9,7 @@ def plot_chloropleth(data_file_path: str,
                      default_year: int, 
                      chloropleth_subheader: str, 
                      df_single_continent: pd.DataFrame, 
-                     df_country_codes, pd.DataFrame) -> None:
+                     df_country_codes: pd.DataFrame) -> None:
     
     min_year, max_year = year_range
     
