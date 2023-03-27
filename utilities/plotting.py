@@ -8,8 +8,7 @@ def plot_chloropleth(data_file_path: str,
                      year_range: tuple, 
                      default_year: int, 
                      chloropleth_subheader: str, 
-                     df_single_continent: pd.DataFrame, 
-                     df_country_codes: pd.DataFrame) -> None:
+                     df_country_codes_who: pd.DataFrame) -> None:
     
     min_year, max_year = year_range
     
@@ -22,8 +21,7 @@ def plot_chloropleth(data_file_path: str,
     df_single_year = df_single_year.reset_index()
     df_single_year.columns = ['Country', 'Level']
 
-    df_merge = pd.merge(df_single_year, df_country_codes, on='Country', how='left')
-    df_merge = pd.merge(df_single_continent, df_merge, on='Country_Code', how='left')
+    df_merge = pd.merge(df_single_year, df_country_codes_who, on='Country', how='left')
 
     chloropleth_subheader = chloropleth_subheader + f' in {year}'
     st.subheader(chloropleth_subheader)

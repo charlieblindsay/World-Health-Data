@@ -12,7 +12,9 @@ df = df[['Period', 'Location', 'Dim1', 'SpatialDimValueCode', 'Value']]
 # Renaming columns
 df.columns = ['Year', 'Country', 'Alcohol_Type', 'Country_Code', 'Alcohol_consumption_per_capita']
 
-df_country_codes = df[['Country', 'Country_Code']]
+df_country_codes_who = df[['Country', 'Country_Code']]
+df_country_codes_who = df_country_codes_who.drop_duplicates()
+
 df = df.drop('Country_Code', axis=1)
 
 # Selecting only rows which have alcohol type equal to 'all types'
@@ -30,4 +32,4 @@ df = df.sort_values(by=['Country', 'Year'])
 df = change_dataframe_structure(df)
 
 df.to_csv(processed_data_path / 'alcohol_data.csv', index=False)
-df_country_codes.to_csv(processed_data_path / 'country_codes.csv', index=False)
+df_country_codes_who.to_csv(processed_data_path / 'country_codes_who.csv', index=False)

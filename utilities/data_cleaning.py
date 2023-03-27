@@ -15,7 +15,7 @@ def change_dataframe_structure(df: pd.DataFrame) -> pd.DataFrame:
             else:
                 dict[country].append(float(df[df.Country == country][df.Year == year].Alcohol_consumption_per_capita))
     df = pd.DataFrame(dict)
-    df['Year'] = [i for i in range(years[0], years[-1]+1)]
+    df['Year'] = pd.Series([i for i in range(years[0], years[-1]+1)])
     
     return df
 

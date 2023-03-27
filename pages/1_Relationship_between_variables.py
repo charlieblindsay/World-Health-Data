@@ -7,7 +7,7 @@ st.title('What is the relationship between BMI and alcohol consumption?')
 
 df_alcohol = pd.read_csv(processed_data_path / 'alcohol_data.csv')
 df_bmi = pd.read_csv(processed_data_path / 'BMI_data.csv')
-df_country_code = pd.read_csv(processed_data_path / 'country_codes.csv')
+df_country_code = pd.read_csv(processed_data_path / 'country_codes_who.csv')
 
 df_alcohol = df_alcohol.set_index('Year')
 df_bmi = df_bmi.set_index('Year')
@@ -24,6 +24,7 @@ df_bmi_single_year = df_bmi_single_year.reset_index()
 df_bmi_single_year.columns = ['Country', 'Average BMI']
 
 df_a_single_year = pd.merge(df_a_single_year, df_country_code, on='Country', how='left')
+
 
 df_merge = pd.merge(df_a_single_year, df_bmi_single_year, on='Country')
 
