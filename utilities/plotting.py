@@ -2,13 +2,15 @@
 
 import pandas as pd
 import streamlit as st
+# TODO: Add docstrings
+
 import plotly.express as px
 
 def plot_chloropleth(data_file_path: str, 
                      year_range: tuple, 
                      default_year: int, 
                      chloropleth_subheader: str, 
-                     df_single_continent: pd.DataFrame, 
+                    #  df_single_continent: pd.DataFrame, 
                      df_country_codes: pd.DataFrame) -> None:
     
     min_year, max_year = year_range
@@ -23,14 +25,13 @@ def plot_chloropleth(data_file_path: str,
     df_single_year.columns = ['Country', 'Level']
 
     df_merge = pd.merge(df_single_year, df_country_codes, on='Country', how='left')
-    df_merge = pd.merge(df_single_continent, df_merge, on='Country_Code', how='left')
+    # df_merge = pd.merge(df_single_continent, df_merge, on='Country_Code', how='left')
 
     chloropleth_subheader = chloropleth_subheader + f' in {year}'
     st.subheader(chloropleth_subheader)
     fig = px.choropleth(df_merge, locations="Country_Code",
                         color="Level",
                         hover_name="Country",
-                        color_continuous_scale=px.colors.sequential.Plasma,
-                        center={'lat': 50, 'lon': 14})
+                        color_continuous_scale=px.colors.sequential.Plasma)
 
     st.plotly_chart(fig)
