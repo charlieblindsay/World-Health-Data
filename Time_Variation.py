@@ -3,41 +3,48 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
+
 from utilities.file_paths import processed_data_path
+from utilities.plotting import plot_variation_against_time
 
 st.title('How have Alcohol consumption and BMI varied in the last 50 years?')
 
-df_BMI = pd.read_csv(processed_data_path / 'BMI_data.csv')
 df_alcohol = pd.read_csv(processed_data_path / 'alcohol_data.csv')
+df_BMI = pd.read_csv(processed_data_path / 'BMI_data.csv')
 df_population = pd.read_csv(processed_data_path / 'population_data.csv')
+df_GDP = pd.read_csv(processed_data_path / 'GDP_data.csv')
 
 countries = list(df_BMI.columns[1:])
 
 selected_countries = st.multiselect('Select Countries', countries)
 
 try:
-    selected_data = st.radio('Choose to see BMI or Alcohol consumption data', options=['Population', 'BMI', 'Alcohol Consumption'], index=0)
+    selected_data = st.radio('Choose to see BMI or Alcohol consumption data', options=['Alcohol Consumption', 'BMI', 'Population', 'GDP per capita'], index=0)
 
-    if selected_data == 'Population':
-        fig = sns.lineplot(data=df_population[selected_countries])
-        st.header("How has population varied over time?")
-        plt.xlabel('Year')
-        plt.ylabel('Population')
-        fig.set_xticklabels(['1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'])       
-    
-    if selected_data == 'BMI':
-        fig = sns.lineplot(data=df_BMI[selected_countries])
-        st.header("How has BMI varied over time?")
-        plt.xlabel('Year')
-        plt.ylabel('BMI')
-        fig.set_xticklabels(['1970', '1975', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015'])
-    
     if selected_data == 'Alcohol Consumption':
-        fig = sns.lineplot(data=df_alcohol[selected_countries])
-        st.header("How has Alcohol Consumption varied over time?")
-        plt.xlabel('Year')
-        plt.ylabel('Alcohol consumption per capita (in litres of pure alcohol per year)')
-        fig.set_xticklabels(['1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'])
+        plot_variation_against_time(df = df_alcohol, 
+                                    variable_name='Alcohol Consumption', 
+                                    selected_countries=selected_countries, 
+                                    ylabel='Alcohol consumption per capita \n (in litres of pure alcohol per year)',
+                                    xticklabels=['1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'])
+
+    if selected_data == 'BMI':
+        plot_variation_against_time(df = df_BMI, 
+                                    variable_name='BMI', 
+                                    selected_countries=selected_countries, 
+                                    xticklabels=['1970', '1975', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015'])
+    
+    if selected_data == 'Population':
+        plot_variation_against_time(df = df_population, 
+                                    variable_name='population', 
+                                    selected_countries=selected_countries, 
+                                    xticklabels=['1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'])      
+    
+    if selected_data == 'GDP per capita':
+        plot_variation_against_time(df = df_GDP, 
+                            variable_name='GDP per capita', 
+                            selected_countries=selected_countries, 
+                            xticklabels=['1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'])      
     
     st.pyplot(plt.gcf())
 

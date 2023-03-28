@@ -3,6 +3,7 @@ import plotly.express as px
 import pandas as pd
 from utilities.file_paths import raw_data_path, processed_data_path
 
+
 st.title('What is the relationship between BMI and alcohol consumption?')
 
 df_alcohol = pd.read_csv(processed_data_path / 'alcohol_data.csv')
@@ -24,7 +25,6 @@ df_bmi_single_year = df_bmi_single_year.reset_index()
 df_bmi_single_year.columns = ['Country', 'Average BMI']
 
 df_a_single_year = pd.merge(df_a_single_year, df_country_code, on='Country', how='left')
-
 
 df_merge = pd.merge(df_a_single_year, df_bmi_single_year, on='Country')
 

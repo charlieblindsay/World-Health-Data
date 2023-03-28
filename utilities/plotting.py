@@ -1,8 +1,25 @@
 #TODO: Add docstrings to all functions
 
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 import streamlit as st
 import plotly.express as px
+
+def plot_variation_against_time(df: pd.DataFrame, 
+                                variable_name: str, 
+                                selected_countries: list,
+                                xticklabels: list,
+                                ylabel: str = None):
+    
+    fig = sns.lineplot(data=df[selected_countries])
+    st.header(f'How has {variable_name} varied over time?')
+    plt.xlabel('Year')
+    if ylabel != None:
+        plt.ylabel(ylabel)
+    else:
+        plt.ylabel(variable_name.capitalize())
+    fig.set_xticklabels(xticklabels)
 
 def plot_chloropleth(data_file_path: str, 
                      year_range: tuple, 
