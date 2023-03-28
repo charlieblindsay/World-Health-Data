@@ -7,7 +7,7 @@ import plotly.express as px
 from utilities.file_paths import processed_data_path
 from utilities.plotting import plot_variation_against_time
 
-st.title('How have Alcohol consumption and BMI varied in the last 50 years?')
+st.title('How have Alcohol consumption, BMI and GDP per capita varied in the last 50 years?')
 
 df_alcohol = pd.read_csv(processed_data_path / 'alcohol_data.csv')
 df_BMI = pd.read_csv(processed_data_path / 'BMI_data.csv')
