@@ -19,7 +19,7 @@ countries = list(df_BMI.columns[1:])
 selected_countries = st.multiselect('Select Countries', countries)
 
 try:
-    selected_data = st.radio('Choose to see BMI or Alcohol consumption data', options=['Alcohol Consumption', 'BMI', 'Population', 'GDP per capita'], index=0)
+    selected_data = st.radio('Choose which data you want to see', options=['Alcohol Consumption', 'BMI', 'Population', 'GDP per capita'], index=0)
 
     if selected_data == 'Alcohol Consumption':
         plot_variation_against_time(df = df_alcohol, 
