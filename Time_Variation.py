@@ -31,6 +31,7 @@ try:
     if selected_data == 'BMI':
         plot_variation_against_time(df = df_BMI, 
                                     variable_name='BMI', 
+                                    ylabel='Average BMI',
                                     selected_countries=selected_countries, 
                                     xticklabels=['1970', '1975', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015'])
     
@@ -43,6 +44,7 @@ try:
     if selected_data == 'GDP per capita':
         plot_variation_against_time(df = df_GDP, 
                             variable_name='GDP per capita', 
+                            ylabel='GDP per capita',
                             selected_countries=selected_countries, 
                             xticklabels=['1950', '1960', '1970', '1980', '1990', '2000', '2010', '2020'])      
     
