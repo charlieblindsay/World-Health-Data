@@ -6,6 +6,8 @@ import seaborn as sns
 import streamlit as st
 import plotly.express as px
 
+from utilities.file_paths import processed_data_path
+
 def plot_variation_against_time(df: pd.DataFrame, 
                                 variable_name: str, 
                                 selected_countries: list,
@@ -24,8 +26,9 @@ def plot_variation_against_time(df: pd.DataFrame,
 def plot_chloropleth(data_file_path: str, 
                      year_range: tuple, 
                      default_year: int, 
-                     chloropleth_subheader: str, 
-                     df_country_codes_who: pd.DataFrame) -> None:
+                     chloropleth_subheader: str) -> None:
+    
+    df_country_codes_who = pd.read_csv(processed_data_path / 'country_codes_who.csv')
     
     min_year, max_year = year_range
     
