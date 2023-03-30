@@ -59,7 +59,7 @@ try:
                                     variable_name='BMI', 
                                     ylabel='Average BMI',
                                     selected_countries=selected_countries, 
-                                    xticklabels=['1970', '1975', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015'])
+                                    xticklabels=['1970', '1975', '1985', '1995', '2005', '2015'])
     
     if selected_data == 'Population':
         plot_variation_against_time(df = df_population, 
