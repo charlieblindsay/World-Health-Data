@@ -30,8 +30,6 @@ According to the [NHS](https://www.nhs.uk/live-well/alcohol-advice/calculating-a
 
 I originally used this data as part of a Data Visuzalization section in a [Python course](https://icsm-python-course.netlify.app/) I created.
 
-st.write('I originally used this data as part of a \'Data Visuzalization\' section in a [Python course](https://icsm-python-course.netlify.app/) I created.')
-
 ## Files
 
 ### Data Cleaning Files
@@ -39,9 +37,9 @@ st.write('I originally used this data as part of a \'Data Visuzalization\' secti
 Run these files convert raw data in the data/raw folder into the processed data in the data/processed folder.
 The processed data is in a year-country format; the index column is the year and all the other columns are the countries. The value contained in each cell is the average variable value (e.g. average BMI) for that country in that year.
 
-data_cleaning_BMI.py
-data_cleaning_alcohol.py: 
-data_cleaning_world_bank.py
+- data_cleaning_BMI.py
+- data_cleaning_alcohol.py: 
+- data_cleaning_world_bank.py
 
 #### What does 'cleaning' data mean in this context?
 - Removing unnecessary columns
@@ -54,8 +52,8 @@ data_cleaning_world_bank.py
 Run these files to create a SQL database table which contains information from all processed data created in the files above.
 
 These files should be run after running the Data Cleaning files above. They should be run in the following order:
-create_sql_dataframe.py: Creates a dataframe which contains the year, country, population, GDP per capita, Average BMI and Average alcohol consumption as the columns. 
-create_sql_database.py: Creates a sqlite database table of the dataframe created with the above file.
+- create_sql_dataframe.py: Creates a dataframe which contains the year, country, population, GDP per capita, Average BMI and Average alcohol consumption as the columns. 
+- create_sql_database.py: Creates a sqlite database table of the dataframe created with the above file.
 
 #### What does 'cleaning' data mean in this context?
 - Removing unnecessary columns
