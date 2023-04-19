@@ -32,7 +32,7 @@ if selection_mode == 'Selection with SQL query':
         st.write('Note: When you use \'Country\', since it has type = text, use operators such as \'[LIKE](https://www.w3schools.com/sql/sql_like.asp)\' instead of \'[BETWEEN](https://www.w3schools.com/sql/sql_between.asp)\'.')
 
     SQL_query = st.text_input('Enter your SQL query', value="""
-    SELECT * FROM Country_Table WHERE BMI BETWEEN 30 AND 40
+    SELECT Country FROM Country_Table WHERE BMI BETWEEN 30 AND 40
     """)
     
     c.execute(SQL_query)
